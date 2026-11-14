@@ -13,6 +13,7 @@ step() {
   fi
 }
 
+step audit:claude-md scripts/audit-claude-md.sh
 step audit:unused-tokens scripts/audit-unused-tokens.sh
 # SwiftLint を単独の段にしないのは、ビルドの最初の段階で走るので二重になるため
 # -quiet でも警告とエラーは出る。成功時に何千行も流さないため
