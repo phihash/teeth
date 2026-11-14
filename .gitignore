@@ -1,0 +1,6 @@
+# Xcode の個人用の設定(ウィンドウの状態、スキームの並び順など)
+xcuserdata/
+.DS_Store
+
+# Claude Code の自分だけの設定
+.claude/settings.local.json
