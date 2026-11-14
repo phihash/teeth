@@ -1,0 +1,40 @@
+# デザインの値の直書きだけを止める。標準ルールを入れないのは、既存コードが大量に引っかかり、
+# 本当に止めたいデザインの警告が埋もれるため。標準ルールを足すなら only_rules に足す。
+# どうしても直書きが要る行は、前の行に「// swiftlint:disable:next ルール名 - 理由」と書く。
+only_rules:
+  - custom_rules
+
+included:
+  - teeth
+
+custom_rules:
+  design_color:
+    name: "色の直書き"
+    regex: 'Color\((red|white|hue|uiColor):'
+    excluded: "teeth/DesignSystem/"
+    message: "色は DesignSystem/Colors.swift の名前を使う"
+    severity: error
+  design_font:
+    name: "文字の直書き"
+    regex: '\.(system|custom)\('
+    excluded: "teeth/DesignSystem/"
+    message: "文字は DesignSystem/Typography.swift の名前を使う"
+    severity: error
+  design_text_style:
+    name: "標準の文字スタイル"
+    regex: '\.font\(\.(largeTitle|title[23]?|headline|subheadline|body|callout|footnote|caption2?)[).]'
+    excluded: "teeth/DesignSystem/"
+    message: "文字は DesignSystem/Typography.swift の名前を使う"
+    severity: error
+  design_corner_radius:
+    name: "角丸の直書き"
+    regex: '[Cc]ornerRadius(: |\()[0-9]'
+    excluded: "teeth/DesignSystem/"
+    message: "角丸は DesignSystem/Radius.swift の名前を使う"
+    severity: error
+  design_opacity:
+    name: "透明度の直書き"
+    regex: '\.opacity\('
+    excluded: "teeth/DesignSystem/"
+    message: "薄い色は DesignSystem/Colors.swift に名前を付ける。ビュー全体のフェードなど色以外の用途なら、理由を書いて例外にする"
+    severity: error
