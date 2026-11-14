@@ -5,7 +5,7 @@
 | 決まりの種類 | 置き場所 | どう効くか |
 |---|---|---|
 | 機械で判定できる(デザインの値の直書きなど) | `.swiftlint.yml` | ビルド中と push 前に止まる。文章には書かない |
-| 機械で判定できるが、ファイルをまたいで数える(使われていない値) | `scripts/audit-unused-tokens.sh` | push 前に止まる |
+| 機械で判定できるが、ファイルをまたいで調べる(使われていない値、CLAUDE.md とスキルに書いたパスの実在) | `scripts/audit-unused-tokens.sh`、`scripts/audit-claude-md.sh` | push 前に止まる |
 | 判断が要る見た目の決まり | `.claude/skills/design-system/SKILL.md` | UIを触るときに読む。コミット後にフックが見直させる |
 | 触る前に知っておくべきこと | このファイル | 毎回読まれる。長くしない |
 
@@ -19,11 +19,11 @@
 | `teeth/DesignSystem/` | 色・文字・角丸・画面の共通の見た目。値はここにだけ書く |
 | `.claude/skills/design-system/` | 見た目の決まり(どの場面でどの名前を使うか) |
 | `.claude/settings.json`、`scripts/` | Claude のフック(コミット後にスキルで見直させる) |
-| `.githooks/` | push 前の検査(使われていない値の検査 → ビルド。ビルドの最初の段階で SwiftLint も走る) |
+| `.githooks/` | push 前の検査(CLAUDE.md とスキルのパス → 使われていない値 → ビルド。ビルドの最初の段階で SwiftLint も走る) |
 
 ## レイヤー構造
 
-層は分けていない。画面(View)が SwiftData(`@Query`、`modelContext`)と `@AppStorage` を直接読み書きし、見た目は `DesignSystem/` の名前を使う。画面の外に出すのは、複数の画面で使う見た目(`DesignSystem/`)とデータのモデル(`BrushRecord`)だけ。ロジックが複数の画面で要るようになるまでは、ViewModel などの層を作らない。
+層は分けていない。画面(View)が SwiftData(`@Query`、`modelContext`)と `@AppStorage` を直接読み書きし、見た目は `teeth/DesignSystem/` の名前を使う。画面の外に出すのは、複数の画面で使う見た目(`teeth/DesignSystem/`)とデータのモデル(`BrushRecord`)だけ。ロジックが複数の画面で要るようになるまでは、ViewModel などの層を作らない。
 
 ## 注意点
 
