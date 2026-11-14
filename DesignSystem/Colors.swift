@@ -14,4 +14,12 @@ extension Color {
     static let slateMuted = slate.opacity(0.7)
     /// 色の付いた背景の上に置く、半透明の白い面(丸ボタン・記録カード)
     static let glass = Color.white.opacity(0.3)
+
+    // 歯みがき中の口のイラスト(grape の背景の上)
+    /// 今磨いている歯
+    static let toothBrushing = Color.white
+    /// 今は磨いていない歯
+    static let toothIdle = Color.white.opacity(0.35)
+    /// 口の中央の光
+    static let mouthGlow = Color.white.opacity(0.5)
 }
