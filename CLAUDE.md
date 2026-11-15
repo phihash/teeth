@@ -19,7 +19,7 @@
 | `teeth/DesignSystem/` | 色・文字・角丸・画面の共通の見た目。値はここにだけ書く |
 | `.claude/skills/design-system/` | 見た目の決まり(どの場面でどの名前を使うか) |
 | `.claude/settings.json`、`scripts/` | Claude のフック(コミット後にスキルで見直させる) |
-| `.githooks/` | push 前の検査(CLAUDE.md とスキルのパス → 使われていない値 → ビルド。ビルドの最初の段階で SwiftLint も走る) |
+| `.githooks/` | コミット前の秘密情報の検査(Betterleaks)と、push 前の検査(CLAUDE.md とスキルのパス → 使われていない値 → ビルド。ビルドの最初の段階で SwiftLint も走る) |
 
 ## レイヤー構造
 
@@ -38,4 +38,4 @@
 
 - UIを作る・変えるときは、先に `.claude/skills/design-system/SKILL.md` を読む。
 - ビルド: `xcodebuild -project teeth.xcodeproj -scheme teeth -destination 'generic/platform=iOS Simulator' build`
-- SwiftLint は `brew install swiftlint` で入れる。clone し直したら `git config core.hooksPath .githooks` を1回実行する。
+- SwiftLint と Betterleaks は `brew install swiftlint betterleaks` で入れる。clone し直したら `git config core.hooksPath .githooks` を1回実行する。
